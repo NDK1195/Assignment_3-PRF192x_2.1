@@ -9,10 +9,6 @@ const inputConfirmPasswordEle = document.getElementById('input-password-confirm'
 const btnRegister = document.getElementById('btn-submit');
 
 /*** GLOBAL VARIABLES ***/
-
-const KEY = 'USER_ARRAY';
-const userArr = JSON.parse(getFromStorage(KEY)) || [];
-console.log(userArr);
 /*** FUNCTIONS ***/
 
 // Get user register data from input function
