@@ -24,7 +24,7 @@ const KEY = 'USER_ARRAY';
 let userArr = getFromStorage(KEY) || [];
 // parse user object to User instance
 userArr = userArr.map(user => parseUser(user));
-console.log(userArr);
+// console.log(userArr);
 // Get current user
 const currentUser = getFromStorage('currentUser') || '';
-console.log(currentUser);
+// console.log(currentUser);

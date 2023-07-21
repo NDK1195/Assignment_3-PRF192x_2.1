@@ -51,7 +51,7 @@ btnLogin.addEventListener('click', function () {
   if (isValidated) {
     // Find user with login data
     const userFound = findUser(loginData);
-    console.log(userFound);
+
     if (userFound) {
       alert('Login successfully');
       // Save current user to local storage
