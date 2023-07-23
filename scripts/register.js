@@ -89,7 +89,7 @@ btnRegister.addEventListener('click', function (e) {
     // add new user to user array
     userArr.push(newUser);
     // Save to local storage
-    saveToStorage(KEY, userArr);
+    saveToStorage(userArr);
     // Redirect to login page
     window.location.href = '../pages/login.html';
   }

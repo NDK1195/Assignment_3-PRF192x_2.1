@@ -28,13 +28,13 @@ const checkCurrentPage = function (totalResults, pageSize = 10) {
 };
 
 // Get news data from api function
-const getNews = async function (page) {
+const getNews = async function (currentPage) {
   // Check current page to display prev, next button
   checkCurrentPage(totalNewsResult);
   try {
     // Fetch news data
     const response = await fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&category=sports&pageSize=10&page=${page}&apiKey=81da8df56501440193866309c5fa2827`
+      `https://newsapi.org/v2/top-headlines?country=us&category=${currentUser.category}&pageSize=${currentUser.pageSize}&page=${currentPage}&apiKey=264b39aa1b4a4e219510a03165fc49d8`
     );
     const data = await response.json();
     console.log(data);

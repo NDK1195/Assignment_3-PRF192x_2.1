@@ -1,5 +1,5 @@
 'use strict';
-const saveToStorage = function (key, value) {
+const saveToStorage = function (key = 'USER_ARRAY', value) {
   localStorage.setItem(key, JSON.stringify(value));
 };
 const getFromStorage = function (key) {
@@ -20,11 +20,10 @@ function parseUser(userData) {
   return user;
 }
 
-const KEY = 'USER_ARRAY';
-let userArr = getFromStorage(KEY) || [];
+let userArr = getFromStorage('USER_ARRAY') || [];
 // parse user object to User instance
 userArr = userArr.map(user => parseUser(user));
-// console.log(userArr);
+console.log(userArr);
 // Get current user
 const currentUser = getFromStorage('currentUser') || '';
 // console.log(currentUser);
