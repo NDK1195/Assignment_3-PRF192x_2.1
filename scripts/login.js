@@ -26,15 +26,6 @@ const validateData = function (loginData) {
   return result;
 };
 
-// Find user with login data function
-// Input: login data object
-// Output: user object if found
-const findUser = function (loginData) {
-  return userArr.find(
-    user => user.username === loginData.username && user.password === loginData.password
-  );
-};
-
 /*** EVENTS ***/
 
 // Handle login button click event
@@ -50,16 +41,20 @@ btnLogin.addEventListener('click', function () {
 
   if (isValidated) {
     // Find user with login data
-    const userFound = findUser(loginData);
+    const userFound = userArr.find(user => user.username === loginData.username);
 
     if (userFound) {
-      alert('Login successfully');
-      // Save current user to local storage
-      saveToStorage('currentUser', userFound);
-      // Redirect to home page
-      window.location.href = '../index.html';
+      if (userFound.password === loginData.password) {
+        alert('Login successfully');
+        // Save current user to local storage
+        saveToStorage('currentUser', userFound);
+        // Redirect to home page
+        window.location.href = '../index.html';
+      } else {
+        alert('Wrong password');
+      }
     } else {
-      alert('Wrong username or password');
+      alert('User not found');
     }
   }
 });

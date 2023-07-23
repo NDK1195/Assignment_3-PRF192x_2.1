@@ -1,26 +1,57 @@
 'use strict';
 /*** DOM ELEMENTS ***/
 const newsContainerEle = document.getElementById('news-container');
+const btnPrevPage = document.getElementById('btn-prev');
+const btnNextPage = document.getElementById('btn-next');
+const pageNumEle = document.getElementById('page-num');
+
+/*** GLOBAL VARIABLES ***/
+
+let currentPage = 1;
+let totalNewsResult = 0;
+
 /*** FUNCTIONS ***/
 
+// Check current page to hide button function
+// Input: total news result, page size
+const checkCurrentPage = function (totalResults, pageSize = 10) {
+  if (currentPage === 1) {
+    btnPrevPage.classList.remove('d-block');
+    btnPrevPage.classList.add('d-none');
+  } else if (totalResults / pageSize <= currentPage) {
+    btnNextPage.classList.remove('d-block');
+    btnNextPage.classList.add('d-none');
+  } else {
+    btnNextPage.classList.add('d-block');
+    btnPrevPage.classList.add('d-block');
+  }
+};
+
 // Get news data from api function
-const getNews = async function () {
+const getNews = async function (page) {
+  // Check current page to display prev, next button
+  checkCurrentPage(totalNewsResult);
   try {
+    // Fetch news data
     const response = await fetch(
-      'https://newsapi.org/v2/top-headlines?country=us&pageSize=5&category=sports&apiKey=81da8df56501440193866309c5fa2827'
+      `https://newsapi.org/v2/top-headlines?country=us&category=sports&pageSize=10&page=${page}&apiKey=81da8df56501440193866309c5fa2827`
     );
     const data = await response.json();
     console.log(data);
-
+    totalNewsResult = data.totalResults;
+    // Display news
     renderNews(data);
   } catch (error) {
     console.error(error.message);
   }
 };
-getNews();
+getNews(currentPage);
 
 // Render news function
 const renderNews = function (data) {
+  // Clear content in container
+  newsContainerEle.innerHTML = '';
+  // Add new article
   for (const article of data.articles) {
     const newArticle = `
          <div class="card flex-row flex-wrap">
@@ -59,3 +90,18 @@ const renderNews = function (data) {
 };
 
 /*** EVENTS ***/
+// Handle prev button click event
+btnPrevPage.addEventListener('click', function () {
+  currentPage--;
+  getNews(currentPage);
+
+  pageNumEle.innerText = currentPage;
+});
+
+// Handle next button click event
+btnNextPage.addEventListener('click', function () {
+  currentPage++;
+  getNews(currentPage);
+
+  pageNumEle.innerText = currentPage;
+});
