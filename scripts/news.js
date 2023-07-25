@@ -37,7 +37,7 @@ const getNews = async function (currentPage) {
       `https://newsapi.org/v2/top-headlines?country=us&category=${currentUser.category}&pageSize=${currentUser.pageSize}&page=${currentPage}&apiKey=264b39aa1b4a4e219510a03165fc49d8`
     );
     const data = await response.json();
-    console.log(data);
+
     totalNewsResult = data.totalResults;
     // Display news
     renderNews(data);
@@ -54,7 +54,7 @@ const renderNews = function (data) {
   // Add new article
   for (const article of data.articles) {
     const newArticle = `
-         <div class="card flex-row flex-wrap">
+         <div class="card">
             <div class="card mb-3">
               <div class="row no-gutters">
                 <div class="col-md-4">
@@ -64,6 +64,7 @@ const renderNews = function (data) {
                     }"
                     class="card-img"
                     alt="article-img"
+                    style="max-height:330px"
                   />
                 </div>
                 <div class="col-md-8">
