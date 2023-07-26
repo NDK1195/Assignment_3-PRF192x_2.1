@@ -120,6 +120,8 @@ btnSearch.addEventListener('click', function () {
 
 // Handle prev button click event
 btnPrevPage.addEventListener('click', function () {
+  window.scrollTo(0, 0);
+
   currentPage--;
   getNews(currentPage, searchKey);
 
@@ -128,6 +130,8 @@ btnPrevPage.addEventListener('click', function () {
 
 // Handle next button click event
 btnNextPage.addEventListener('click', function () {
+  window.scrollTo(0, 0);
+
   currentPage++;
   getNews(currentPage, searchKey);
 

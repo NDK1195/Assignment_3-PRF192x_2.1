@@ -16,7 +16,9 @@ const renderTodoList = function () {
     // Filter current user task
     if (todo.owner === currentUser.username) {
       // Create task
-      const task = `<li data-index=${index}>${todo.task}<span class="close">×</span></li>`;
+      const task = `<li data-index=${index} class=${todo.isDone ? 'checked' : ''}>${
+        todo.task
+      }<span class="close">×</span></li>`;
       // Add task to todo list
       todoListEle.insertAdjacentHTML('beforeend', task);
     }
@@ -60,6 +62,7 @@ todoListEle.addEventListener('click', function (e) {
     todoArr[indexOfClickedTask].isDone = todoArr[indexOfClickedTask].isDone ? false : true;
     // Update local storage
     saveToStorage('TODO_ARRAY', todoArr);
+    console.log(todoArr);
   } else if (e.target.tagName === 'SPAN') {
     // If click on delete icon, confirm delete
     const confirmDelete = confirm('Do you want to delete this task?');
