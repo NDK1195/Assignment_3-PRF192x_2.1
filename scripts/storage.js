@@ -14,7 +14,9 @@ function parseUser(userData) {
     userData.firstName,
     userData.lastName,
     userData.username,
-    userData.password
+    userData.password,
+    userData.pageSize,
+    userData.category
   );
 
   return user;

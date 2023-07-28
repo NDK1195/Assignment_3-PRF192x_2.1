@@ -62,14 +62,12 @@ todoListEle.addEventListener('click', function (e) {
     todoArr[indexOfClickedTask].isDone = todoArr[indexOfClickedTask].isDone ? false : true;
     // Update local storage
     saveToStorage('TODO_ARRAY', todoArr);
-    console.log(todoArr);
   } else if (e.target.tagName === 'SPAN') {
     // If click on delete icon, confirm delete
     const confirmDelete = confirm('Do you want to delete this task?');
     if (confirmDelete) {
       // Find index of clicked task
       const indexOfClickedTask = e.target.parentElement.dataset.index;
-      console.log(indexOfClickedTask);
       // Remove task from todoArr
       todoArr.splice(indexOfClickedTask, 1);
       // Update local storage

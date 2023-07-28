@@ -47,9 +47,16 @@ btnSave.addEventListener('click', function () {
     // Set settings data to current user
     currentUser.pageSize = settingsData.pageSize;
     currentUser.category = settingsData.category;
+    // Update current settings to user array
+    let index = userArr.findIndex(user => user.username === currentUser.username);
+    userArr[index] = currentUser;
     // Save to local storage
     saveToStorage('currentUser', currentUser);
+    saveToStorage('USER_ARRAY', userArr);
 
     alert('Settings saved');
+    // Reset input
+    inpPageSizeEle.value = '';
+    selectCategoryEle.value = '';
   }
 });
